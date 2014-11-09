@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tiny map task</title>
+
+	<!-- Linking bootstrap from CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+		<fieldset>
+
+		<!-- Form Name -->
+		<legend>Map Task</legend>
+
+		<!-- Text input-->
+		<div class="control-group">
+			<label class="control-label" for="mlon">Longitude</label>
+			<div class="controls">
+		    		<input id="mlon" name="mlon" type="number" placeholder="Enter Longitude here" class="input-xlarge" required="">
+		    		<p class="help-block">Enter the longitude of place you want to search</p>
+			</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label" for="mlat">Latitude</label>
+  <div class="controls">
+		    <input id="mlat" name="mlat" type="number" placeholder="Enter Latitude here" class="input-xlarge" required="">
+		    <p class="help-block">Enter the latitude of the place you want to search</p>
+		  </div>
+		</div>
+
+		<!-- Button -->
+		<div class="control-group">
+		  <label class="control-label" for="gotomap"></label>
+		  <div class="controls">
+		    <button id="gotomap" name="gotomap" class="btn btn-success" onclick="goToMap()">Go to map</button>
+		  </div>
+		</div>
+
+	</fieldset>
+
+<!-- Javascript for going to desired page -->
+<script type="text/javascript">
+	function goToMap() {
+		var longitude = document.getElementById('mlon').value;
+		var latitude = document.getElementById('mlat').value;
+		var url = 'http://openstreetmap.org/?mlat='+latitude+'&mlon='+longitude+'#map=18/'+latitude+'/'+longitude;
+		alert(url);
+	}
+</script>
+
+</body>
+</html>
