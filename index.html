@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Tiny map task</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
 	<!-- Linking bootstrap from CDN -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -12,6 +13,10 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	
+	<!-- Maps from OSM -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
 </head>
 <body>
 
@@ -48,6 +53,34 @@
 
 	</fieldset>
 
+	<div id='map' style="width:500px; height:500px;"></div>
+
+	<script>
+		L.mapbox.accessToken = 'pk.eyJ1IjoiaW5kZXIiLCJhIjoiS2I2LUhHOCJ9.bMzAHfH0XxCidIcEx3MLJA';
+		var map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([0, 0], 2);
+
+		var coordinates = document.getElementById('coordinates');
+
+		var marker = L.marker([0, 0], {
+		    icon: L.mapbox.marker.icon({
+		      'marker-color': '#f86767'
+	    	}),
+	
+	       		draggable: true
+		}).addTo(map);
+	
+		// every time the marker is dragged, update the coordinates container
+		marker.on('dragend', ondragend);
+
+		// Set the initial marker coordinate on load.
+		ondragend();
+
+		function ondragend() {
+		    var m = marker.getLatLng();
+		    document.getElementById('mlon').value = m.lng;
+		    document.getElementById('mlat').value = m.lat;
+		}
+</script>
 <!-- Javascript for going to desired page -->
 <script type="text/javascript">
 	function goToMap() {
@@ -57,6 +90,5 @@
 		window.location.href = url;
 	}
 </script>
-
 </body>
 </html>
